@@ -4,9 +4,9 @@ import jsonwebtoken from 'jsonwebtoken'
 
 const signUp = async (req, res) => {
      try {
-        let { name, email, password, role } = req.body
+        let { name, email, password} = req.body
 
-        if (!name || !email || !password || !role) {
+        if (!name || !email || !password) {
             return res.status(404).json({
                 message: "data not found for user creation...",
                 success: false
@@ -34,7 +34,7 @@ const signUp = async (req, res) => {
             })
         }
 
-        let user = await User.create({ name, email, role, password: hashPassword })
+        let user = await User.create({ name, email,password: hashPassword })
 
             res.status(200).json({
                 success: true,
